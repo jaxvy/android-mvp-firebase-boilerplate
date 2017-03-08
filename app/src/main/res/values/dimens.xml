@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="half_standard_gap">4dp</dimen>
+    <dimen name="standard_gap">8dp</dimen>
+    <dimen name="two_standard_gap">16dp</dimen>
+    <dimen name="three_standard_gap">24dp</dimen>
+    <dimen name="four_standard_gap">32dp</dimen>
+
+    <dimen name="text_title">20sp</dimen>
+    <dimen name="text_sub_heading">16sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+</resources>

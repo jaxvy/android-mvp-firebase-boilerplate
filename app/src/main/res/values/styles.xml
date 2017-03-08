@@ -1,0 +1,48 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Themes for the Toolbar. -->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="button">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="button.Primary">
+        <item name="android:background">@drawable/button_primary_background</item>
+        <item name="android:textColor">@color/textPrimaryMaterialDark</item>
+    </style>
+
+    <!-- TextView styles -->
+    <style name="text" parent="@android:style/TextAppearance">
+        <!-- apply to all text views -->
+    </style>
+
+    <style name="text.Title" >
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.SubHeading" >
+        <item name="android:textSize">@dimen/text_sub_heading</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.Body">
+        <item name="android:textSize">@dimen/text_body</item>
+    </style>
+
+    <style name="text.Body.Secondary">
+        <item name="android:textColor">?android:textColorSecondary</item>
+    </style>
+
+</resources>
