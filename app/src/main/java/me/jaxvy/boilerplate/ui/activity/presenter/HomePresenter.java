@@ -2,13 +2,10 @@ package me.jaxvy.boilerplate.ui.activity.presenter;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 
 import io.realm.RealmResults;
-import me.jaxvy.boilerplate.model.persistence.Item;
-import me.jaxvy.boilerplate.model.request.ItemListRequest;
-import me.jaxvy.boilerplate.model.response.ItemListResponse;
-import rx.Observable;
+import me.jaxvy.boilerplate.api.request.ItemListRequest;
+import me.jaxvy.boilerplate.persistence.model.Item;
 
 public class HomePresenter extends AuthenticatedPresenter<HomePresenter.Callback> {
 
@@ -31,10 +28,7 @@ public class HomePresenter extends AuthenticatedPresenter<HomePresenter.Callback
     }
 
     public void fetchItems() {
-        String userId = mFirebaseAuth.getCurrentUser().getUid();
-        Observable<ItemListResponse> itemsCall = mApi.getItems(userId);
-        mApiManager.call(new ItemListRequest(itemsCall,
-                () -> Log.d("HomePresenter", "Items save to realm")));
+        mApiManager.call(new ItemListRequest());
     }
 
     public void signOut() {

@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.model.request.listener;
+package me.jaxvy.boilerplate.api.request.listener;
 
 public interface OnRequestCompleteListener {
 

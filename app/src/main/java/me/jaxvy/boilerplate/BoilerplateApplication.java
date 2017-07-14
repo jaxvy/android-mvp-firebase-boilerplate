@@ -3,9 +3,9 @@ package me.jaxvy.boilerplate;
 import android.app.Application;
 import android.content.Context;
 
-import me.jaxvy.boilerplate.utils.inject.BoilerplateComponent;
-import me.jaxvy.boilerplate.utils.inject.BoilerplateModule;
-import me.jaxvy.boilerplate.utils.inject.DaggerBoilerplateComponent;
+import me.jaxvy.boilerplate.di.BoilerplateComponent;
+import me.jaxvy.boilerplate.di.BoilerplateModule;
+import me.jaxvy.boilerplate.di.DaggerBoilerplateComponent;
 
 public class BoilerplateApplication extends Application {
 

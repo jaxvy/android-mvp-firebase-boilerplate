@@ -11,7 +11,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import me.jaxvy.boilerplate.R;
-import me.jaxvy.boilerplate.model.persistence.Item;
+import me.jaxvy.boilerplate.persistence.model.Item;
+
 
 public class ItemsAdapter extends RecyclerView.Adapter<ItemsAdapter.ItemViewHolder> {
 

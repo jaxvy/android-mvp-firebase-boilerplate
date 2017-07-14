@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.utils.inject;
+package me.jaxvy.boilerplate.di;
 
 import android.content.Context;
 
@@ -12,14 +12,14 @@ import dagger.Module;
 import dagger.Provides;
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
-import me.jaxvy.boilerplate.network.Api;
-import me.jaxvy.boilerplate.network.ApiManager;
-import me.jaxvy.boilerplate.network.NetworkSettings;
-import me.jaxvy.boilerplate.utils.SharedPrefs;
+import me.jaxvy.boilerplate.api.Api;
+import me.jaxvy.boilerplate.api.ApiManager;
+import me.jaxvy.boilerplate.api.NetworkSettings;
+import me.jaxvy.boilerplate.persistence.SharedPrefs;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
@@ -69,7 +69,7 @@ public class BoilerplateModule {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .baseUrl(networkSettings.getBaseUrl())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
     }

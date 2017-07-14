@@ -1,44 +1,37 @@
-package me.jaxvy.boilerplate.model.request;
+package me.jaxvy.boilerplate.api.request;
 
-import me.jaxvy.boilerplate.model.request.listener.OnRequestCompleteListener;
-import me.jaxvy.boilerplate.model.request.listener.OnRequestErrorListener;
+import io.reactivex.Observable;
+import me.jaxvy.boilerplate.api.request.listener.OnRequestCompleteListener;
+import me.jaxvy.boilerplate.api.request.listener.OnRequestErrorListener;
 import me.jaxvy.boilerplate.utils.InjectionBase;
-import rx.Observable;
 
 public abstract class BaseNetworkRequest<T> extends InjectionBase {
 
-    private Observable<T> mCall;
     private OnRequestCompleteListener mOnRequestCompleteListener;
     private OnRequestErrorListener mOnRequestErrorListener;
 
-    public BaseNetworkRequest(Observable<T> call) {
-        mCall = call;
-        mOnRequestCompleteListener = null;
-        mOnRequestErrorListener = null;
-    }
-
-    public BaseNetworkRequest(Observable<T> call, OnRequestCompleteListener onRequestCompleteListener) {
-        mCall = call;
+    public BaseNetworkRequest(OnRequestCompleteListener onRequestCompleteListener) {
         mOnRequestCompleteListener = onRequestCompleteListener;
         mOnRequestErrorListener = null;
     }
 
-    public BaseNetworkRequest(Observable<T> call, OnRequestErrorListener onRequestErrorListener) {
-        mCall = call;
+    public BaseNetworkRequest(OnRequestErrorListener onRequestErrorListener) {
         mOnRequestCompleteListener = null;
         mOnRequestErrorListener = onRequestErrorListener;
     }
 
-    public BaseNetworkRequest(Observable<T> call, OnRequestCompleteListener onRequestCompleteListener,
+    public BaseNetworkRequest(OnRequestCompleteListener onRequestCompleteListener,
                               OnRequestErrorListener onRequestErrorListener) {
-        mCall = call;
         mOnRequestCompleteListener = onRequestCompleteListener;
         mOnRequestErrorListener = onRequestErrorListener;
     }
 
-    public Observable<T> getCall() {
-        return mCall;
+    public BaseNetworkRequest() {
+        mOnRequestCompleteListener = null;
+        mOnRequestErrorListener = null;
     }
+
+    public abstract Observable<T> getCall();
 
     public void onComplete() {
         if (mOnRequestCompleteListener != null) {

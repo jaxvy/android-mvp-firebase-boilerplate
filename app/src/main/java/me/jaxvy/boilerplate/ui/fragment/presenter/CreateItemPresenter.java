@@ -4,11 +4,8 @@ import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
-import me.jaxvy.boilerplate.model.persistence.Item;
-import me.jaxvy.boilerplate.model.request.ItemCreateRequest;
-import me.jaxvy.boilerplate.model.response.ItemCreateResponse;
+import me.jaxvy.boilerplate.api.request.ItemCreateRequest;
 import me.jaxvy.boilerplate.ui.activity.callback.HomeActivityCallback;
-import rx.Observable;
 
 public class CreateItemPresenter extends BaseFragmentPresenter<CreateItemPresenter.Callback> {
 
@@ -20,13 +17,7 @@ public class CreateItemPresenter extends BaseFragmentPresenter<CreateItemPresent
     }
 
     public void saveItem(String title, String description) {
-        Item item = new Item();
-        item.setTitle(title);
-        item.setDescription(description);
-        String userId = mFirebaseAuth.getCurrentUser().getUid();
-
-        Observable<ItemCreateResponse> itemCall = mApi.createItem(userId, item);
-        mApiManager.call(new ItemCreateRequest(itemCall,
+        mApiManager.call(new ItemCreateRequest(title, description,
                 () -> mActivityCallback.closeCreateItemFragment(),
                 throwable -> Log.e("CreateItemPresenter", "onError", throwable)
         ));

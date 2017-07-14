@@ -1,5 +1,5 @@
-<manifest package="me.jaxvy.boilerplate"
-          xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="me.jaxvy.boilerplate">
 
     <application
         android:name="me.jaxvy.boilerplate.BoilerplateApplication"
@@ -9,12 +9,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="me.jaxvy.boilerplate.ui.activity.LoginSignupActivity"/>
+        <activity
+            android:name="me.jaxvy.boilerplate.ui.activity.LoginSignupActivity"
+            android:screenOrientation="portrait" />
 
-        <activity android:name="me.jaxvy.boilerplate.ui.activity.HomeActivity">
+        <activity
+            android:name="me.jaxvy.boilerplate.ui.activity.HomeActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>

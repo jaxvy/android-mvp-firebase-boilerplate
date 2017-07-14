@@ -3,6 +3,8 @@ package me.jaxvy.boilerplate.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import me.jaxvy.boilerplate.ui.activity.presenter.AuthenticatedPresenter;
 
 public abstract class AuthenticatedActivity<T extends AuthenticatedPresenter> extends BaseActivity<T>
@@ -11,6 +13,7 @@ public abstract class AuthenticatedActivity<T extends AuthenticatedPresenter> ex
     /**
      * Activities extending from AuthenticatedActivity can call their presenter's onCreate() method
      * only if they're signed in. If not signed in we logout the user
+     *
      * @param savedInstanceState
      */
     @Override

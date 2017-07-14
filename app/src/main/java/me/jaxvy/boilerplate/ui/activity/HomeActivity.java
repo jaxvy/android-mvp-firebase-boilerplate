@@ -14,7 +14,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import io.realm.RealmResults;
 import me.jaxvy.boilerplate.R;
-import me.jaxvy.boilerplate.model.persistence.Item;
+import me.jaxvy.boilerplate.persistence.model.Item;
 import me.jaxvy.boilerplate.ui.activity.callback.HomeActivityCallback;
 import me.jaxvy.boilerplate.ui.adapter.ItemsAdapter;
 import me.jaxvy.boilerplate.ui.activity.presenter.HomePresenter;
@@ -85,7 +85,7 @@ public class HomeActivity extends AuthenticatedActivity<HomePresenter> implement
         mAdapter.notifyDataSetChanged();
     }
 
-    @OnClick
+    @Override
     public void onBackPressed() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         if (fragmentManager.findFragmentByTag(CreateItemFragment.TAG) != null) {

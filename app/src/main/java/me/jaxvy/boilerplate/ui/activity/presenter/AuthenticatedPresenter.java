@@ -6,8 +6,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AuthenticatedPresenter<T extends AuthenticatedPresenter.Callback> extends BaseActivityPresenter<T> {
 
-    protected FirebaseAuth mFirebaseAuth; // Injecting FirebaseAuth with dagger causes a crash
-
     public AuthenticatedPresenter(Context context) {
         super(context);
         mFirebaseAuth = FirebaseAuth.getInstance();

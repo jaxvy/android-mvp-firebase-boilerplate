@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.utils;
+package me.jaxvy.boilerplate.persistence;
 
 import android.content.Context;
 import android.content.SharedPreferences;

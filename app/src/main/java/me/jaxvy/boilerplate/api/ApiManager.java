@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.network;
+package me.jaxvy.boilerplate.api;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,13 +8,13 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Date;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import me.jaxvy.boilerplate.BoilerplateApplication;
-import me.jaxvy.boilerplate.model.request.BaseNetworkRequest;
-import me.jaxvy.boilerplate.utils.SharedPrefs;
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
+import me.jaxvy.boilerplate.api.request.BaseNetworkRequest;
+import me.jaxvy.boilerplate.persistence.SharedPrefs;
 
 public class ApiManager {
 
@@ -25,12 +25,12 @@ public class ApiManager {
 
     private Context mContext;
     private SharedPrefs mSharedPrefs;
-    private CompositeSubscription mCompositeSubscription;
+    private CompositeDisposable mCompositeDisposable;
 
     public ApiManager(Context context, SharedPrefs sharedPrefs) {
         mContext = context;
         mSharedPrefs = sharedPrefs;
-        mCompositeSubscription = new CompositeSubscription();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     public <T> void call(BaseNetworkRequest<T> baseNetworkRequest) {
@@ -78,18 +78,16 @@ public class ApiManager {
     }
 
     private <T> void execute(BaseNetworkRequest<T> baseNetworkRequest) {
-        Subscription subscription = baseNetworkRequest.getCall()
+        Disposable disposable = baseNetworkRequest.getCall()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        item -> baseNetworkRequest.onNext(item),
+                .subscribe(item -> baseNetworkRequest.onNext(item),
                         throwable -> baseNetworkRequest.onError(throwable),
-                        () -> baseNetworkRequest.onComplete()
-                );
-        mCompositeSubscription.add(subscription);
+                        () -> baseNetworkRequest.onComplete());
+        mCompositeDisposable.add(disposable);
     }
 
     public void cancelRequests() {
-        mCompositeSubscription.clear();
+        mCompositeDisposable.clear();
     }
 }

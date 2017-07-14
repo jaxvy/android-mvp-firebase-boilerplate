@@ -2,12 +2,15 @@ package me.jaxvy.boilerplate.utils;
 
 import android.content.Context;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import javax.inject.Inject;
 
 import io.realm.RealmConfiguration;
 import me.jaxvy.boilerplate.BoilerplateApplication;
-import me.jaxvy.boilerplate.network.Api;
-import me.jaxvy.boilerplate.network.ApiManager;
+import me.jaxvy.boilerplate.api.Api;
+import me.jaxvy.boilerplate.api.ApiManager;
+import me.jaxvy.boilerplate.persistence.SharedPrefs;
 
 /**
  * Dagger cannot inject into classes with generic paramters. Theregore using this base class to
@@ -26,6 +29,9 @@ public class InjectionBase {
 
     @Inject
     protected RealmConfiguration mRealmConfiguration;
+
+    // Injecting FirebaseAuth with dagger causes a crash
+    protected FirebaseAuth mFirebaseAuth = FirebaseAuth.getInstance();
 
     /**
      * This default constructor is used by the BaseNetworkRequest so that

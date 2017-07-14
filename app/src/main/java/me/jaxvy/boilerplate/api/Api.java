@@ -1,13 +1,13 @@
-package me.jaxvy.boilerplate.network;
+package me.jaxvy.boilerplate.api;
 
-import me.jaxvy.boilerplate.model.persistence.Item;
-import me.jaxvy.boilerplate.model.response.ItemCreateResponse;
-import me.jaxvy.boilerplate.model.response.ItemListResponse;
+import io.reactivex.Observable;
+import me.jaxvy.boilerplate.api.model.Item;
+import me.jaxvy.boilerplate.api.response.ItemCreateResponse;
+import me.jaxvy.boilerplate.api.response.ItemListResponse;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import rx.Observable;
 
 public interface Api {
 

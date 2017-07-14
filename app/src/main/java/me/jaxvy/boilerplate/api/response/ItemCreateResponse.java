@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.model.response;
+package me.jaxvy.boilerplate.api.response;
 
 public class ItemCreateResponse {
 
