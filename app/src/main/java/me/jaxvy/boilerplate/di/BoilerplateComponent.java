@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.utils.inject;
+package me.jaxvy.boilerplate.di;
 
 import javax.inject.Singleton;
 

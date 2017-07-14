@@ -1,4 +1,4 @@
-package me.jaxvy.boilerplate.model.persistence;
+package me.jaxvy.boilerplate.persistence.model;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;

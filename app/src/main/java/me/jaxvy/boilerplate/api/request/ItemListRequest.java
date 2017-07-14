@@ -1,15 +1,11 @@
-package me.jaxvy.boilerplate.model.request;
+package me.jaxvy.boilerplate.api.request;
 
+import io.reactivex.Observable;
 import io.realm.Realm;
-import me.jaxvy.boilerplate.model.persistence.Item;
-import me.jaxvy.boilerplate.model.request.listener.OnRealmSaveListener;
-import me.jaxvy.boilerplate.model.response.ItemListResponse;
-import rx.Observable;
+import me.jaxvy.boilerplate.api.response.ItemListResponse;
+import me.jaxvy.boilerplate.persistence.model.Item;
 
 public class ItemListRequest extends BaseRealmRequest<ItemListResponse> {
-    public ItemListRequest(Observable<ItemListResponse> call, OnRealmSaveListener onRealmSaveListener) {
-        super(call, onRealmSaveListener);
-    }
 
     @Override
     public void saveResponseToRealm(Realm realm, ItemListResponse itemListResponse) {
@@ -21,11 +17,16 @@ public class ItemListRequest extends BaseRealmRequest<ItemListResponse> {
                 if (item == null) {
                     item = realm.createObject(Item.class, itemId);
                 }
-                Item responseItem = itemListResponse.getItems().get(itemId);
+                me.jaxvy.boilerplate.api.model.Item responseItem = itemListResponse.getItems().get(itemId);
                 item.setTitle(responseItem.getTitle());
                 item.setDescription(responseItem.getDescription());
                 realm.insertOrUpdate(item);
             }
         }
+    }
+
+    @Override
+    public Observable<ItemListResponse> getCall() {
+        return mApi.getItems(mFirebaseAuth.getCurrentUser().getUid());
     }
 }

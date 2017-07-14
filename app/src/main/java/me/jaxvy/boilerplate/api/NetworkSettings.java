@@ -1,10 +1,10 @@
-package me.jaxvy.boilerplate.network;
+package me.jaxvy.boilerplate.api;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import me.jaxvy.boilerplate.BuildConfig;
-import me.jaxvy.boilerplate.utils.SharedPrefs;
+import me.jaxvy.boilerplate.persistence.SharedPrefs;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
@@ -23,6 +23,19 @@ public class NetworkSettings {
         ArrayList<Interceptor> interceptors = new ArrayList<>();
         if (BuildConfig.DEBUG) {
             interceptors.add(getLoggingInterceptor());
+            /*
+            // In case we need to emulate a slow network on device
+            interceptors.add(chain -> {
+                Log.d("FakeNetworkSlowdown", "Sleeping for 3 seconds");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    Log.e("FakeNetworkSlowdown", "Interrupted", e);
+                }
+                Log.d("FakeNetworkSlowdown", "Network slowdown done. Proceeding chain");
+                return chain.proceed(chain.request());
+            });
+            */
         }
         interceptors.add(mAuthInterceptor);
         return interceptors;

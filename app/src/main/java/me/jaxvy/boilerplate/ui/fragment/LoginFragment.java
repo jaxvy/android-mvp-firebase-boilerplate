@@ -1,6 +1,7 @@
 package me.jaxvy.boilerplate.ui.fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -37,8 +38,8 @@ public class LoginFragment extends BaseFragment<LoginPresenter> implements
     }
 
     @Override
-    public void onViewCreated(View view, Bundle bundle) {
-        super.onViewCreated(view, bundle);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         setupToolbar("Login", false);
     }
 

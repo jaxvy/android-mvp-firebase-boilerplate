@@ -1,8 +1,8 @@
-package me.jaxvy.boilerplate.model.response;
+package me.jaxvy.boilerplate.api.response;
 
 import java.util.Map;
 
-import me.jaxvy.boilerplate.model.persistence.Item;
+import me.jaxvy.boilerplate.api.model.Item;
 
 public class ItemListResponse {
 
